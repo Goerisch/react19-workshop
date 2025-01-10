@@ -10,26 +10,51 @@ Neue Hooks:
 const [state, myAction, isPending] = useActionState(handleSubmit, initialState);
 ```
 
-implementiert useTransition() und funktioniert für asynchrone Funktionen
 Nützlich um den Status der Form, den pending-Status und Fehlerhandling zu vereinfachen.
 
 Statt "onSubmit" wird in der form die property "action" oder am button "formAction" genutzt.
 
+Die Daten der Form werden als FormData übergeben.
+
+Wichtig: Es muss an jedem verwendeten input / select / checkbox etc. die Property "name" gesetzt werden. Über diese wird gemappt!
+
 ```ts
 return(
 <form action={myAction}>
+<input name='kurzerEinzigartigerName' type="text" />
 <button formAction={myAction} type='submit'>submit</button>
 </form>)
 ```
 
-damit hat die Funktion handleSubmit Zugriff auf den vorherigen Status und auf
+Als Parameter nimmt useActionForm zwei Parameter:
+
+- Eine Funktion welche selbst zugriff auf den prevState und formData hat und die Logik enthält, was nach dem submit passiert.
+- Den initialen Status (kann auch null oder ein leeres Objekt sein).
 
 ## useFormStatus
 
-Ergänzend zu useActionState, gibt es einen weiteren Hook, der NUR in Components genutzt werden kann, die in einer Form eingebettet sind.
+Ergänzend zu useActionState, gibt es einen weiteren Hook, der useActionState ergänzt.
 
-Ermöglich einen Einfachen Zugriff auf den pending-Status und auf den FormState, allerdings nur während einer laufenden FormAction.
-Außerdem kann man ggf. die Methode (default='GET' oder 'POST') und die action selbst einsehen.
+Wichtig: useFormStatus kann der NUR in Components genutzt werden kann, die in einer Form eingebettet sind.
+
+```ts
+// funktioniert nicht innerhalb von CustomButtonComponent:
+<>
+<form>
+  <input/>
+</form>
+<CustomButtonComponent>
+</>
+
+//so funktioniert es:
+<form>
+  <input/>
+  <customButtonComponent>
+</form>
+```
+
+Ermöglicht einfachen Zugriff auf den pending-Status und auf den FormState, allerdings nur während einer laufenden FormAction.
+Außerdem kann man ggf. die Methode (default='GET' oder 'POST') und die action-funktion selbst einsehen.
 
 ## useOptimistic
 
@@ -47,7 +72,7 @@ Solange bis die Promise resolved bzw. der Context geladen wird, kann ein Fallbac
 
 Wichtig: Folgt nicht den stengen Regeln, eines Hooks, kann also auch z.B. innerhalb einer if-Bedingung oder danach genutzt werden.
 
-## Weitere Änderungen
+## Weitere Änderungen (honorable mentions)
 
 - verbessertes Handling von Refs:
   - forwardRef ist nun obsolet

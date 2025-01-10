@@ -1,5 +1,6 @@
 import {useActionState, useOptimistic} from 'react';
 import {NestedComponent} from './NestedComponent';
+import {FormNames} from '../useFormStatus/FormStatus';
 
 export function OptimisticFormExample() {
     const initialState: AddToCartResult = {
@@ -16,10 +17,10 @@ export function OptimisticFormExample() {
 
     async function addToCart(
         prevState: AddToCartResult,
-        queryData: FormData,
+        formData: FormData,
     ): Promise<AddToCartResult> {
-        const itemID = queryData.get('itemID');
-        const quantity = queryData.get('quantity');
+        const itemID = formData.get(FormNames.id);
+        const quantity = formData.get(FormNames.quantity);
 
         setOptimisticState({
             success: true,
@@ -48,27 +49,12 @@ export function OptimisticFormExample() {
     }
 
     return (
-        <form
-            style={{display: 'flex', flexDirection: 'column'}}
-            action={formAction}
-        >
-            <label htmlFor='itemID'>
-                ItemId:
-                <input
-                    type='number'
-                    name='itemID'
-                    style={{height: 30, width: 300, margin: '1rem'}}
-                />
-            </label>
-            <label htmlFor='quantity'>
-                Quantity:
-                <input
-                    type='number'
-                    name='quantity'
-                    style={{height: 30, width: 300, margin: '1rem'}}
-                />
-            </label>
-            <button style={{margin: '1rem'}} type='submit' disabled={isPending}>
+        <form action={formAction}>
+            <p>ItemId:</p>
+            <input type='number' name={FormNames.id} />
+            <p>Quantity:</p>
+            <input type='number' name={FormNames.quantity} />
+            <button type='submit' disabled={isPending}>
                 Submit
             </button>
             <NestedComponent state={optimisticState} />

@@ -7,30 +7,15 @@ interface AddToCartResult {
 }
 
 export function ActionFormExample() {
-    /*
-     */
+    // Hook verwenden
 
     return (
-        <form style={{display: 'flex', flexDirection: 'column'}}>
-            <label htmlFor='itemID'>
-                ItemId:
-                <input
-                    type='number'
-                    name={FormNames.id}
-                    style={{height: 30, width: 300, margin: '1rem'}}
-                />
-            </label>
-            <label htmlFor='quantity'>
-                Quantity:
-                <input
-                    type='number'
-                    name={FormNames.quantity}
-                    style={{height: 30, width: 300, margin: '1rem'}}
-                />
-            </label>
-            <button style={{margin: '1rem'}} type='submit'>
-                Submit
-            </button>
+        <form>
+            <p>ItemId:</p>
+            <input type='number' name={FormNames.id} />
+            <p>Quantity: </p>
+            <input type='number' name={FormNames.quantity} />
+            <button type='submit'>Submit</button>
         </form>
     );
 }

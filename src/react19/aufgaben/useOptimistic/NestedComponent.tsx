@@ -1,5 +1,6 @@
 import {useFormStatus} from 'react-dom';
 import {AddToCartResult} from './Form';
+import {FormNames} from '../../../util/FormNames';
 
 export const NestedComponent = ({state}: {state: AddToCartResult}) => {
     const {pending, data} = useFormStatus();
@@ -10,8 +11,8 @@ export const NestedComponent = ({state}: {state: AddToCartResult}) => {
     return (
         <div>
             {pending && <div>Fetching cart...</div>}
-            <p>Adding Item with ID:{data?.get('itemID')?.toString()}</p>
-            <p>Quantity: {data?.get('quantity')?.toString()}</p>
+            <p>Adding Item with ID:{data?.get(FormNames.id)?.toString()}</p>
+            <p>Quantity: {data?.get(FormNames.quantity)?.toString()}</p>
             <h1>Cart overview</h1>
             <p>Cart size: {state?.cartSize}</p>
             <p>{state?.message}</p>

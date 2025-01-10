@@ -1,19 +1,10 @@
 import './App.css';
-import {UseExampleContainer} from './react19/loesungen/use/useExampleContainer';
+import {FormStatusExample} from './react19/loesungen/useFormStatus/FormStatus';
 
 function App() {
     return (
-        <div
-            style={{
-                textAlign: 'center',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100vh',
-            }}
-        >
-            <UseExampleContainer />
+        <div className='app'>
+            <FormStatusExample />
         </div>
     );
 }

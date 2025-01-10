@@ -4,14 +4,14 @@
 
 Der neue Compiler bringt insbesondere Verbesserungen zur Performance der Anwendung.
 
-Er erkennt "teure" funktionsaufrufe in Components, die von caching profitieren würden.
+Er erkennt "teure" funktionsaufrufe in Components und Hooks, die von caching profitieren würden.
 
 Außerdem werden verstärkt unnötige rerenderings in Hooks und Components vermieden.
 
-Damit werden alte manuelle Optimierungen mit (memo(), useMemo() und useCallback()) obsolet.
+Damit werden manuelle Optimierungen mit (memo(), useMemo() und useCallback()) obsolet.
 
 ABER:
-Der neue Compiler ist anders als React19 aktuell noch im Beta-Status!!!
+Der neue Compiler ist anders als React 19 aktuell noch im Beta-Status!
 
 ## Beispiele
 
@@ -27,7 +27,7 @@ const TableContainer = ({ items }) => {
 }
 ```
 
-In diesem Beispiel würde die MessageButton-Component jedesmal neu gerendert, wenn sich das frieds-Array ändert.
+In diesem Beispiel würde die MessageButton-Component jedesmal neu gerendert werden, wenn sich das frieds-Array ändert.
 
 ```ts
 function FriendList({ friends }) {
@@ -49,14 +49,14 @@ function FriendList({ friends }) {
 
 ## Welche Voraussetzungen hat der React-Compiler?
 
-Der Compiler erfordert mindestens React17, empfohlen ist aber definitiv React19.
+Der Compiler erfordert mindestens React 17, empfohlen wird aber React 19.
 
 Der Compiler stellt Anforderungen an den Code:
-Außerdem erzwingt der neue Compiler pure functions und bringt dafür auch ein linter-plugin mit (kann bereits genutzt werden ohne compiler)
+Außerdem müssen die [Rules of React](https://react.dev/reference/rules) eingehalten werden.
 
 ## Wie installiere ich den React-Compiler?
 
-Damit der neue React-Compiler genutzt werden kann, benötigen wir die folgenden Dependencies:
+Damit der neue React-Compiler genutzt werden kann, benötigen wir die folgenden Dev-Dependencies:
 
 ```bash
 npm install -D babel-plugin-react-compiler eslint-plugin-react-compiler
@@ -64,7 +64,7 @@ npm install -D babel-plugin-react-compiler eslint-plugin-react-compiler
 
 ### Eslint-Plugin
 
-Kann auch bereit genutzt werden, ohne dass geplant ist, den Compiler zu installieren, damit die Kompatibilität gewährleistet wird/bleibt!
+Kann auch bereits genutzt werden, ohne dass geplant ist, den Compiler zu installieren, damit die Kompatibilität gewährleistet wird/bleibt!
 
 Die eslint.config.js muss angepasst werden, damit das plugin aktiv wird:
 
@@ -93,7 +93,7 @@ Um den Compiler zu aktivieren, müssen wir unsere vite.config.ts anpassen:
 ```ts
 // vite.config.js
 const ReactCompilerConfig = { /* Wenn React 17 oder 18 verwendet wird, muss die Version als target konfiguriert werden, bei React 19, kann die Config hingegen leer bleiben: */
-    target: 18
+    target: 19
  };
 
 export default defineConfig(() => {
