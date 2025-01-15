@@ -2,15 +2,16 @@ import {startTransition, useActionState, useOptimistic, useRef} from 'react';
 import {FormNames} from '../../../enum/FormNames';
 import {useForm} from 'react-hook-form';
 import {ResultComponent} from './ResultComponent';
+import {useCart} from './useCart';
 
 type Input = {
     itemID: number;
     quantity: number;
 };
-//Beispiel für die Verwendung von useActionState mit React Hook Form Validierung
-export function ValidationExample() {
+//Beispiel für die Verwendung von useActionState mit React Hook Form Validierung und React Query
+export function OverkillExample() {
     const [formState, formAction, isPending] = useActionState(
-        addToCart,
+        action,
         initialState,
     );
     const formRef = useRef<HTMLFormElement>(null);
@@ -20,42 +21,28 @@ export function ValidationExample() {
         formState: {errors},
     } = useForm<Input>({mode: 'onBlur'});
     const [optimisticState, setOptimisticState] = useOptimistic(formState);
+    const {addToCartMutationClient} = useCart();
 
-    async function addToCart(
+    async function action(
         prevState: AddToCartResult,
         formData: FormData,
     ): Promise<AddToCartResult> {
-        const itemID = formData.get(FormNames.id);
-        const quantity = formData.get(FormNames.quantity);
-
         setOptimisticState({
             success: true,
-            cartSize: prevState.cartSize + Number(quantity),
+            cartSize:
+                prevState.cartSize + Number(formData.get(FormNames.quantity)),
             message: 'The item is added to the cart.',
         });
-        console.log(itemID);
-        console.log(quantity);
 
-        // Simuliert eine langsame asynchrone API-Anfrage
-        await new Promise<void>((resolve) => setTimeout(resolve, 2000));
-
-        if (itemID === '1') {
-            return {
-                success: true,
-                cartSize: prevState.cartSize + Number(quantity),
-                message: 'The item is added to the cart.',
-            };
-        } else {
-            return {
-                success: false,
-                message: 'The item is sold out.',
-                cartSize: prevState.cartSize,
-            };
-        }
+        return addToCartMutationClient.mutateAsync({
+            prevState,
+            formData,
+        });
     }
 
     return (
         <form
+            action={formAction}
             // workaround, um das Formular zu validieren, bevor die Aktion ausgeführt wird
             ref={formRef}
             onSubmit={(e) => {
@@ -94,8 +81,7 @@ export function ValidationExample() {
             <ResultComponent
                 state={optimisticState}
                 pending={isPending}
-                // eslint-disable-next-line react-compiler/react-compiler
-                data={new FormData(formRef.current!)}
+                data={addToCartMutationClient.variables?.formData}
             />
         </form>
     );

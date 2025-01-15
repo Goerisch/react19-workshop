@@ -1,5 +1,5 @@
 import {FormNames} from '../../../enum/FormNames';
-import {AddToCartResult} from './ActionForm';
+import {AddToCartResult} from './OverkillExample';
 
 export const ResultComponent = ({
     state,
@@ -13,7 +13,7 @@ export const ResultComponent = ({
     return (
         <div>
             {
-                // Workaround verhindert die Nutzung von useFormStatus
+                // Workaround in Form verhindert die Nutzung von useFormStatus
             }
             {pending && <div>Fetching cart...</div>}
             <p>

@@ -1,18 +1,21 @@
 import {useMutation, useQueryClient} from '@tanstack/react-query';
-import {FormNames} from '../../enum/FormNames';
-import {AddToCartResult} from './types';
+import {FormNames} from '../../../enum/FormNames';
+import {AddToCartResult} from './OverkillExample';
 
 // Eigener Hook, für API-Aufrufe
-export const useCart = (
-    cartSize: number,
-    setCartSize: React.Dispatch<React.SetStateAction<number>>,
-) => {
+export const useCart = () => {
     const queryClient = useQueryClient();
 
     const addToCartMutationClient = useMutation(
         {
-            mutationKey: ['addToCart'],
-            mutationFn: (formData: FormData) => addToCart(formData),
+            mutationKey: ['addToCartKey'],
+            mutationFn: ({
+                prevState,
+                formData,
+            }: {
+                prevState: AddToCartResult;
+                formData: FormData;
+            }) => addToCart(prevState, formData),
             onError: (error) => {
                 console.error(error);
                 // Fehlerbehandlung (z. B. Anzeige einer Fehlermeldung)
@@ -29,7 +32,10 @@ export const useCart = (
         queryClient,
     );
 
-    const addToCart = async (formData: FormData): Promise<AddToCartResult> => {
+    const addToCart = async (
+        prevState: AddToCartResult,
+        formData: FormData,
+    ): Promise<AddToCartResult> => {
         const itemID = formData.get(FormNames.id);
         const quantity = formData.get(FormNames.quantity);
 
@@ -40,17 +46,16 @@ export const useCart = (
         await new Promise<void>((resolve) => setTimeout(resolve, 2000));
 
         if (itemID === '1') {
-            setCartSize(cartSize + Number(quantity));
             return Promise.resolve({
                 success: true,
-                cartSize: cartSize + Number(quantity),
+                cartSize: prevState.cartSize + Number(quantity),
                 message: 'The item is added to the cart.',
             });
         } else {
             return Promise.resolve({
                 success: false,
                 message: 'The item is sold out.',
-                cartSize,
+                cartSize: prevState.cartSize,
             });
         }
     };
