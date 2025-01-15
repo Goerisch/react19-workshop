@@ -1,6 +1,6 @@
 import {useActionState} from 'react';
 import {NestedComponent} from './NestedComponent';
-import {FormNames} from '../../../util/FormNames';
+import {FormNames} from '../../../enum/FormNames';
 
 export function OptimisticFormExample() {
     const initialState: AddToCartResult = {

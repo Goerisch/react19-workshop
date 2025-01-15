@@ -1,4 +1,4 @@
-import {FormNames} from '../../../util/FormNames';
+import {FormNames} from '../../../enum/FormNames';
 
 interface AddToCartResult {
     success: boolean;

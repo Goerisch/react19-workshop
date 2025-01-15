@@ -1,5 +1,5 @@
 import {useMutation, useQueryClient} from '@tanstack/react-query';
-import {FormNames} from '../../../enum/FormNames';
+import {FormNames} from '../../enum/FormNames';
 import {AddToCartResult} from './types';
 
 // Eigener Hook, für API-Aufrufe

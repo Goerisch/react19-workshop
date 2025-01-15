@@ -1,6 +1,6 @@
 import {useFormStatus} from 'react-dom';
 import {AddToCartResult} from './Form';
-import {FormNames} from '../../../util/FormNames';
+import {FormNames} from '../../../enum/FormNames';
 
 export const NestedComponent = ({state}: {state: AddToCartResult}) => {
     const {pending, data} = useFormStatus();

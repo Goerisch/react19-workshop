@@ -1,4 +1,4 @@
-import {FormNames} from '../../../enum/FormNames';
+import {FormNames} from '../../enum/FormNames';
 import {useMutationState} from '@tanstack/react-query';
 import {AddToCartResult} from './types';
 

@@ -1,7 +1,7 @@
 import {useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {ResultComponent} from './ResultComponent';
-import {FormNames} from '../../../util/FormNames';
+import {FormNames} from '../../../enum/FormNames';
 import {useCart} from './useCart';
 import {Input} from './types';
 

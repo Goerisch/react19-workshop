@@ -1,5 +1,5 @@
 import {startTransition, useActionState, useOptimistic, useRef} from 'react';
-import {FormNames} from '../../../util/FormNames';
+import {FormNames} from '../../../enum/FormNames';
 import {useForm} from 'react-hook-form';
 import {ResultComponent} from './ResultComponent';
 
