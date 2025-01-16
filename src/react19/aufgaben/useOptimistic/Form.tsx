@@ -2,7 +2,7 @@ import {useActionState} from 'react';
 import {NestedComponent} from './NestedComponent';
 import {FormNames} from '../../../enum/FormNames';
 
-export function OptimisticFormExample() {
+export function Aufgabe3() {
     const initialState: AddToCartResult = {
         success: false,
         cartSize: 0,

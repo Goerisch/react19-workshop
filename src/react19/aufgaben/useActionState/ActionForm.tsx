@@ -6,7 +6,7 @@ interface AddToCartResult {
     message: string;
 }
 
-export function ActionFormExample() {
+export function Aufgabe1() {
     // Hook verwenden
 
     return (

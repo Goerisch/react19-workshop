@@ -35,7 +35,7 @@ async function addToCart(
     }
 }
 
-export function ActionFormExample() {
+export function ActionFormLoesung() {
     const initialState: AddToCartResult = {
         success: false,
         cartSize: 0,

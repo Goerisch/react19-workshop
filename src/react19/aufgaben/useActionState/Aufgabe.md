@@ -1,15 +1,13 @@
 # Aufgabe 1
 
-## Ziel
+## Ziele
 
-Der Button soll deaktiviert werden, wenn eine Anfrage an die API gesendet wird.
-Wenn die Anfrage erfolgreich ist, soll eine Erfolgsmeldung angezeigt werden.
-Wenn die Anfrage fehlschlägt, soll eine Fehlermeldung angezeigt werden.
-Die Anzahl der Artikel im Warenkorb soll angezeigt aktualisiert werden, wenn ein Artikel hinzugefügt wird.
+1. Der Button soll deaktiviert werden, wenn eine Anfrage an die API gesendet wird.
+2. Wenn die Anfrage erfolgreich ist, soll eine Erfolgsmeldung angezeigt werden.
+3. Wenn die Anfrage fehlschlägt, soll eine Fehlermeldung angezeigt werden.
+4. Die Anzahl der Artikel im Warenkorb soll angezeigt aktualisiert werden, wenn ein Artikel hinzugefügt wird.
 
 Nutze den Hook useActionState, um den Zustand des Formulars zu verwalten.
-
-Bitte vermeide die Nutzung weiterer Hooks
 
 Vorschlag:
 

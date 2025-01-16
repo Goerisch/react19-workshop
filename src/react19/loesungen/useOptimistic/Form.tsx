@@ -2,7 +2,7 @@ import {useActionState, useOptimistic} from 'react';
 import {NestedComponent} from './NestedComponent';
 import {FormNames} from '../useFormStatus/FormStatus';
 
-export function OptimisticFormExample() {
+export function OptimisticFormLoesung() {
     const initialState: AddToCartResult = {
         success: false,
         cartSize: 0,

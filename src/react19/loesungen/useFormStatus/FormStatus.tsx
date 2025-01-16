@@ -31,7 +31,7 @@ async function addToCart(
     }
 }
 
-export function FormStatusExample() {
+export function FormStatusLoesung() {
     const initialState: AddToCartResult = {
         success: false,
         cartSize: 0,
